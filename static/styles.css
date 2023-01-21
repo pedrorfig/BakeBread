@@ -1,0 +1,54 @@
+h1 {
+    color: #dbb470;
+}
+
+header{
+    border-bottom: 2px solid darkgray;
+    padding: 0px;
+}
+
+.navbar {
+    background-color: lightgray;
+    padding: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    border-style: hidden;
+}
+
+a:hover {
+    background-color: #d5d2d2;
+    background-blend-mode: lighten;
+}
+
+.location { grid-area: loc;}
+.description { grid-area: desc; }
+.loc-form { grid-area: frm; }
+
+.loc-container {
+    display: grid;
+    grid-template-areas:
+      'loc loc  loc desc desc desc desc desc frm';
+    column-gap: 5px;
+    background-color: lightslategray;
+    padding: 5px;
+ }
+
+ .loc-container > div.location {
+     text-align: right;
+ }
+
+ .loc-container > div {
+    background-color: lightgray;
+    text-align: left;
+}
+
+input.up {
+    background-color: #5cb85c;
+}
+
+input.del {
+    background-color: #d9534f;
+}

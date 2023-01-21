@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Cooking By Myself</h1>
+  <form method="POST">
+    {{ template_ingredients_form.hidden_tag() }}
+    <table>
+      <tr>
+        <th> Ingredient </th>
+        <th> Quantity </th>
+      </tr>
+      {% for ingredient in template_ingredients_form.ingredient_set %}
+      {{ ingredient.csrf_token }}
+        <tr>
+          <td>{{ingredient.ingredient}}</td>
+          <td>{{ingredient.ingredient_weight}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <table>
+      <tr>
+        <th> Instruction </th>
+        <th> Duration </th>
+      </tr>
+      {% for instruction in template_ingredients_form.instruction_set %}
+      {{ instruction.csrf_token }}
+        <tr>
+          <td>{{instruction.instruction}}</td>
+          <td>{{instruction.step_duration}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% if template_ingredients_form.errors %}
+      {{ template_ingredients_form.errors }}
+    {% endif %}
+    <p>{{ template_ingredients_form.submit() }}</p>
+  </form>
+{% endblock %}

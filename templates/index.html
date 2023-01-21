@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+  <p>Welcome to BakeBread, where your bun journey starts! </p>
+  {% for name in template_recipes.keys() %}
+    <p><a href="{{ url_for('recipe', name=name) }}">{{ name }}</a></p>
+  {% endfor %}
+{% endblock %}
