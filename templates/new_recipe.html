@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
+
   <h1>Cooking By Myself</h1>
   <form action="/add_recipe" method="POST">
     {{ template_form.hidden_tag() }}
@@ -17,4 +19,5 @@
     {{ template_form.instructions() }}</p>
     <p>{{ template_form.submit() }}</p>
   </form>
+</div>
 {% endblock %}

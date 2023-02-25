@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm, RecaptchaField
+from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, RadioField, IntegerField, FieldList, FormField, Form
 from wtforms.validators import DataRequired
 
@@ -16,13 +16,14 @@ class CommentForm(FlaskForm):
     comment = StringField("Comment", validators=[DataRequired()])
     submit = SubmitField("Add Comment")
 
+
 class InstructionForm(FlaskForm):
     instruction = StringField("Instructions", validators=[DataRequired()])
-    step_duration = IntegerField("Duration", validators=[DataRequired()])
+    step_duration = IntegerField("Duration (min)", validators=[DataRequired()])
 
 class IngredientForm(Form):
     ingredient = StringField("Ingredient", validators=[DataRequired()])
-    ingredient_weight = StringField("Ingredient Weight", validators=[DataRequired()])
+    ingredient_quantity = StringField("Ingredient Quantity", validators=[DataRequired()])
 
 class IngredientsFormSet(FlaskForm):
     ingredient_set = FieldList(FormField(IngredientForm))
