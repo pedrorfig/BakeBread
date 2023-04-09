@@ -24,7 +24,9 @@ def recipe(name):
         new_comment = comment_form.comment.data
         recipes[name]['comments'].append(new_comment)
 
-    return render_template("recipe.html", template_recipe=name, template_type=recipes[name]['type'],
+    return render_template("recipe.html",
+                           template_recipe=name,
+                           template_type=recipes[name]['type'],
                            template_description=recipes[name]['description'],
                            template_ingredients=recipes[name]['ingredients'],
                            template_instructions=recipes[name]['instructions'],
@@ -32,6 +34,11 @@ def recipe(name):
                            template_form=comment_form,
                            title=name)
 
+@app.route('/preparation/<string:name>', methods=["GET", "POST"])
+def preparation(name):
+    return render_template('preparation.html',
+                           template_recipe=name,
+                           template_instructions=recipes[name]['instructions'])
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def new_recipe():
@@ -99,3 +106,5 @@ def populate_ingredients(ingredients_form, name):
         ingredient_form.ingredient = ingredient
         ingredient_form.ingredient_quantity = ""
         ingredients_form.ingredient_set.append_entry(ingredient_form)
+
+

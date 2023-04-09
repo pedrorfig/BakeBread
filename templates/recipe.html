@@ -2,14 +2,15 @@
 {% block content %}
 <div class="container">
     <h2>{{ template_recipe | title }}</h2>
-    <h4>{{ template_type }}</h4>
+    <a href="{{ url_for('preparation', name=template_recipe) }}" class="btn btn-primary">Start Preparation</a>
+<!--    <p><a href="{{ url_for('recipe', name=name) }}">{{ name }}</a></p>-->
     {% if template_description %}
     <p>{{ template_description }}</p>
     {%else%}
     <p>A {{ template_recipe }} recipe.</p>
     {% endif %}
     <h3>Ingredients</h3>
-    <table>
+    <table class="table table-hover">
         <tr>
             <th>Ingredient</th>
             <th>Quantity</th>
@@ -21,12 +22,11 @@
         </tr>
         {% endfor %}
     </table>
-
     <h3>Instructions</h3>
-    <table>
+    <table class="table table-hover">
         <tr>
-            <th>Instruction</th>
-            <th>Duration</th>
+            <th scope="col">Instruction</th>
+            <th scope="col">Duration</th>
         </tr>
         {% for instruction, duration in template_instructions.items() %}
         <tr>
