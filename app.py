@@ -1,3 +1,5 @@
+import re
+import time
 from flask import Flask, render_template, request, redirect, url_for
 from helper import recipes, add_ingredients, add_instructions
 from forms import RecipeForm, CommentForm, IngredientsFormSet, IngredientForm, InstructionForm
@@ -8,7 +10,6 @@ app.config["SECRET_KEY"] = "mysecret"
 
 @app.route("/")
 def index():
-
     return render_template("index.html", template_recipes=recipes, title='index')
 
 
@@ -34,11 +35,30 @@ def recipe(name):
                            template_form=comment_form,
                            title=name)
 
+
 @app.route('/preparation/<string:name>', methods=["GET", "POST"])
 def preparation(name):
     return render_template('preparation.html',
-                           template_recipe=name,
-                           template_instructions=recipes[name]['instructions'])
+                           template_recipe=name)
+
+
+@app.route('/preparation_step/<string:name>/<int:step>', methods=["GET", "POST"])
+def preparation_step(name, step):
+    instruction = list(recipes[name]['instructions'].keys())[step - 1]
+    duration = list(recipes[name]['instructions'].values())[step - 1]
+    number_steps = len(recipes[name]['instructions'])
+    duration_int = int(re.findall("(\d+)", duration)[0])*60
+    if step < number_steps:
+        # timer(duration_int)
+        return render_template('preparation_step.html',
+                               template_recipe=name,
+                               template_step=step,
+                               template_instruction=instruction,
+                               template_duration=duration_int
+                               )
+    else:
+        return redirect(url_for('index'))
+
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def new_recipe():
@@ -108,3 +128,7 @@ def populate_ingredients(ingredients_form, name):
         ingredients_form.ingredient_set.append_entry(ingredient_form)
 
 
+def timer(duration):
+    start_time = time.time()
+    while time.time() - start_time < duration:
+        pass

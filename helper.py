@@ -3,7 +3,7 @@ recipes = {"Sourdough Bread": {'type': 'Savory',
                                'ingredients': {"All-purpose flour": "500 g", "Sourdough starter": "100 g",
                                                "Filtered water": '350 g', "Salt": '10 g'},
                                'instructions': {
-                                   "Mix flour with water until there are no lumps": "3 min",
+                                   "Mix flour with water until there are no lumps": "1 min",
                                    "Wait for the flour to fully absorb the water (autolysis)": "30 min",
                                    "Add the sourdough stater and salt": " 3 min",
                                    "Give it some rest": "20 min",

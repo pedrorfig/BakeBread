@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Start preparation of {{ template_recipe }}</h1>
+    <a href="{{ url_for('preparation_step',name=template_recipe, step=1) }}" class="btn btn-primary">Start Preparation</a>
+</div>
+{% endblock %}
