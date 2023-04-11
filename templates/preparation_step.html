@@ -8,6 +8,7 @@
     <div id="timer" class="display-3">
 
     </div>
+    <audio id="audio" src="/static/audio/finish.wav"></audio>
     <script>
         function startTimer(template_duration, display) {
             var timer = template_duration, minutes, seconds;
@@ -19,6 +20,8 @@
 
                 if (--timer < 0) {
                     document.getElementById("timer").innerHTML = "EXPIRED";
+                    var audio = document.getElementById("audio");
+                    audio.play()
                     clearInterval(interval);
                 }
             }, 1000);
