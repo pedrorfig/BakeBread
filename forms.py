@@ -5,10 +5,8 @@ from wtforms.validators import DataRequired
 
 class RecipeForm(FlaskForm):
     recipe = StringField("Recipe", validators=[DataRequired()])
-    recipe_categories = [("Sourdough", "Sourdough"), ("Baker's Yeast", "Baker's Yeast")]
-    ingredients = TextAreaField("Ingredients", validators=[DataRequired()])
-    recipe_type = RadioField("Type", choices=recipe_categories)
     description = StringField("Description", validators=[DataRequired()])
+    ingredients = TextAreaField("Ingredients", validators=[DataRequired()])
     instructions = TextAreaField("Instructions", validators=[DataRequired()])
     submit = SubmitField("Add Recipe")
 

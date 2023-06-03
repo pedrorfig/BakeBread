@@ -47,7 +47,7 @@ def preparation_step(name, step):
     instruction = list(recipes[name]['instructions'].keys())[step - 1]
     duration = list(recipes[name]['instructions'].values())[step - 1]
     number_steps = len(recipes[name]['instructions'])
-    duration_int = int(re.findall("(\d+)", duration)[0])*60
+    duration_int = int(re.findall("(\d+)", duration)[0]) * 60
     if step < number_steps:
         # timer(duration_int)
         return render_template('preparation_step.html',
